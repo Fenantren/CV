@@ -1,0 +1,305 @@
+/* ─────────────────────────────────────────────
+   Patryk Paszko — CV Stylesheet
+   Fonts: Inter (body) + DM Serif Display (name)
+   ───────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap');
+
+/* ── Tokens ──────────────────────────────────── */
+:root {
+  --navy:        #1a1a2e;
+  --accent:      #2d6a9f;
+  --accent-pale: #e8f2fb;
+  --accent-mid:  #bdd5ee;
+  --muted:       #4a4a6a;
+  --grey:        #767690;
+  --border:      #e4e4ef;
+  --bg-page:     #f4f5f8;
+  --bg-card:     #ffffff;
+  --text:        #1a1a2e;
+
+  --font-body:   'Inter', system-ui, sans-serif;
+  --font-display:'DM Serif Display', Georgia, serif;
+
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+
+  --shadow-card: 0 1px 3px rgba(26,26,46,0.07), 0 4px 16px rgba(26,26,46,0.06);
+}
+
+/* ── Reset ───────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── Base ────────────────────────────────────── */
+body {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+a:hover { opacity: 0.75; text-decoration: underline; }
+
+/* ── Page card ───────────────────────────────── */
+.page {
+  max-width: 900px;
+  margin: 48px auto;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* ── Header ──────────────────────────────────── */
+.header {
+  background: var(--navy);
+  padding: 44px 52px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.header-name {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.header-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.header-contact {
+  text-align: right;
+  font-size: 13px;
+  line-height: 2;
+  color: rgba(255,255,255,0.6);
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.header-contact a {
+  color: #8dc4ef;
+}
+.header-contact a:hover { opacity: 0.8; text-decoration: none; }
+
+/* ── Body ────────────────────────────────────── */
+.body {
+  padding: 40px 52px 52px;
+}
+
+/* ── Profile ─────────────────────────────────── */
+.profile {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.8;
+  padding: 16px 20px;
+  background: var(--accent-pale);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 36px;
+}
+
+/* ── Section ─────────────────────────────────── */
+.section {
+  margin-bottom: 36px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  background: var(--accent);
+  opacity: 0.25;
+}
+
+.section-note {
+  font-size: 12.5px;
+  color: var(--grey);
+  font-style: italic;
+  margin-top: -6px;
+  margin-bottom: 16px;
+  padding-left: 2px;
+}
+
+/* ── Itch callout chip ───────────────────────── */
+.itch-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-pale);
+  border: 1px solid var(--accent-mid);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.itch-chip a { font-weight: 600; }
+
+/* ── Two-column grid ─────────────────────────── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+}
+
+/* ── Entry ───────────────────────────────────── */
+.entry {
+  margin-bottom: 20px;
+}
+.entry:last-child { margin-bottom: 0; }
+
+.entry-top {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 6px;
+  margin-bottom: 1px;
+}
+
+.entry-company {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.entry-role {
+  font-size: 13px;
+  color: var(--muted);
+}
+.entry-role::before { content: '—'; margin-right: 4px; color: var(--border); }
+
+.entry-meta {
+  font-size: 11.5px;
+  color: var(--grey);
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* small coloured tag chips on entries */
+.tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 500;
+  padding: 1px 8px;
+  border-radius: 20px;
+  background: var(--accent-pale);
+  color: var(--accent);
+  border: 1px solid var(--accent-mid);
+  white-space: nowrap;
+}
+
+/* ── Bullet list ─────────────────────────────── */
+ul.bullets {
+  list-style: none;
+  padding: 0;
+}
+
+ul.bullets li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+ul.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.55;
+}
+
+ul.bullets li strong {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* ── Divider between sibling entries ────────── */
+.entry-gap { height: 14px; }
+
+/* ── Skills ──────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+}
+
+.skills-col h4 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+/* ── Footer ──────────────────────────────────── */
+.footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 11.5px;
+  color: #b0b0c4;
+  border-top: 1px solid var(--border);
+}
+.footer a { color: var(--grey); }
+.footer a:hover { color: var(--accent); }
+
+/* ── Print ───────────────────────────────────── */
+@media print {
+  body { background: #fff; font-size: 12px; }
+  .page { box-shadow: none; margin: 0; border-radius: 0; max-width: 100%; }
+  .header { padding: 28px 36px 24px; }
+  .body { padding: 28px 36px 36px; }
+  .footer { display: none; }
+  a { color: inherit; text-decoration: none; }
+  .itch-chip, .tag { border: none; background: none; padding: 0; }
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 680px) {
+  .page { margin: 0; border-radius: 0; }
+  .header { flex-direction: column; padding: 28px 24px 24px; }
+  .header-contact { text-align: left; }
+  .header-name { font-size: 32px; }
+  .body { padding: 28px 24px 36px; }
+  .two-col, .skills-grid { grid-template-columns: 1fr; }
+}
