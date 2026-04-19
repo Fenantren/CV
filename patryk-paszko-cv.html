@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patryk Paszko — Junior Gameplay Programmer</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark: #1a1a2e;
+    --accent: #2d6a9f;
+    --accent-light: #e8f1f9;
+    --mid: #4a4a6a;
+    --grey: #888;
+    --border: #e2e2e2;
+    --bg: #ffffff;
+    --bg-page: #f5f6f8;
+    --text: #1a1a2e;
+  }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg-page);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .page {
+    max-width: 860px;
+    margin: 40px auto;
+    background: var(--bg);
+    box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* ── Header ──────────────────────────────────────────── */
+  .header {
+    background: var(--dark);
+    color: #fff;
+    padding: 36px 44px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .header-left h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #fff;
+    line-height: 1.1;
+  }
+
+  .header-left .subtitle {
+    font-size: 15px;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  .header-right {
+    text-align: right;
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    line-height: 2;
+    flex-shrink: 0;
+  }
+
+  .header-right a { color: #7eb8e8; }
+
+  /* ── Body ────────────────────────────────────────────── */
+  .body { padding: 32px 44px 40px; }
+
+  /* ── Profile ─────────────────────────────────────────── */
+  .profile {
+    font-size: 13.5px;
+    color: var(--mid);
+    line-height: 1.75;
+    border-left: 3px solid var(--accent);
+    padding-left: 16px;
+    margin-bottom: 28px;
+  }
+
+  /* ── Section ─────────────────────────────────────────── */
+  .section { margin-bottom: 28px; }
+
+  .section-heading {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+    margin-bottom: 14px;
+  }
+
+  .section-note {
+    font-size: 12px;
+    color: var(--grey);
+    font-style: italic;
+    margin-bottom: 14px;
+    margin-top: -6px;
+  }
+
+  /* ── Two-column grid ─────────────────────────────────── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 36px;
+  }
+
+  /* ── Entry ───────────────────────────────────────────── */
+  .entry { margin-bottom: 18px; }
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry-header { margin-bottom: 2px; }
+
+  .entry-company {
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--dark);
+  }
+
+  .entry-role {
+    font-size: 13px;
+    color: var(--mid);
+    margin-left: 4px;
+  }
+
+  .entry-role::before { content: "·"; margin-right: 4px; }
+
+  .entry-meta {
+    font-size: 11.5px;
+    color: var(--grey);
+    font-style: italic;
+    margin-bottom: 5px;
+  }
+
+  /* ── Bullets ─────────────────────────────────────────── */
+  ul.bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul.bullets li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 13px;
+    color: var(--dark);
+    line-height: 1.6;
+    margin-bottom: 3px;
+  }
+
+  ul.bullets li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 10px;
+    top: 2px;
+  }
+
+  /* ── Skills grid ─────────────────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 36px;
+  }
+
+  .skills-col h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+    margin-top: 0;
+  }
+
+  /* ── Itch link callout ───────────────────────────────── */
+  .itch-callout {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-light);
+    border: 1px solid #bdd5ee;
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 12.5px;
+    color: var(--mid);
+    margin-bottom: 14px;
+  }
+
+  .itch-callout a { font-weight: 600; }
+
+  /* ── Divider between sibling entries in a column ─────── */
+  .entry-divider { height: 10px; }
+
+  /* ── Footer ──────────────────────────────────────────── */
+  .footer {
+    text-align: center;
+    padding: 14px;
+    font-size: 11.5px;
+    color: #bbb;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── Print ───────────────────────────────────────────── */
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; margin: 0; border-radius: 0; }
+    .footer { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .header { flex-direction: column; }
+    .header-right { text-align: left; }
+    .body { padding: 24px 20px 32px; }
+    .two-col, .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>PATRYK PASZKO</h1>
+      <div class="subtitle">Junior Gameplay Programmer</div>
+    </div>
+    <div class="header-right">
+      <a href="mailto:p.paszko93@gmail.com">p.paszko93@gmail.com</a><br>
+      07388 663 949<br>
+      London, UK<br>
+      <a href="https://fenantren.itch.io" target="_blank">fenantren.itch.io</a>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- PROFILE -->
+    <div class="profile">
+      Career-changer with a genuine passion for game development. Proficient in Unity and C# through two completed official Unity pathways, a full Udemy course, and three shipped jam games — all playable in-browser. Brings transferable strengths in problem-solving, cross-functional teamwork, and iterative improvement from a decade in fast-paced professional environments. Looking to grow as a junior programmer at a studio that values autonomy, collaboration, and making great games.
+    </div>
+
+    <!-- GAME JAM PROJECTS -->
+    <div class="section">
+      <div class="section-heading">Game Jam Projects</div>
+      <div class="itch-callout">
+        All projects built solo in Unity (C#) · Playable in-browser at <a href="https://fenantren.itch.io" target="_blank">fenantren.itch.io</a>
+      </div>
+      <div class="two-col">
+        <div>
+          <div class="entry">
+            <div class="entry-header">
+              <span class="entry-company">Wave Slam</span>
+              <span class="entry-role">Action · 3D · GitHub Game Off 2025</span>
+            </div>
+            <div class="entry-meta">Dec 2025 &nbsp;·&nbsp; Unity 6 · C# · HTML5</div>
+            <ul class="bullets">
+              <li>3D action game: player cube fires physics-based wave projectiles to destroy enemy Wavers and Wave Towers</li>
+              <li>Built full player controller — WASD, jump, dash, and an airborne Slam Wave requiring mid-air state detection</li>
+              <li>Designed enemy AI behaviours and hazard balance; shipped rated HTML5 build (4/5 stars) with a published devlog</li>
+            </ul>
+          </div>
+          <div class="entry-divider"></div>
+          <div class="entry">
+            <div class="entry-header">
+              <span class="entry-company">Less-Time-Less</span>
+              <span class="entry-role">Puzzle Platformer · 2D · Unity 20th Anniversary Jam</span>
+            </div>
+            <div class="entry-meta">Nov 2025 &nbsp;·&nbsp; Unity · C# · HTML5</div>
+            <ul class="bullets">
+              <li>Platformer with a player-triggered time-slow mechanic — slows physics and animations while input stays responsive</li>
+              <li>Collected and acted on live playtester feedback mid-jam; identified a collision edge case and planned post-jam fix</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="entry">
+            <div class="entry-header">
+              <span class="entry-company">Loophole</span>
+              <span class="entry-role">Puzzle Platformer · 2D · GMTK Game Jam 2025</span>
+            </div>
+            <div class="entry-meta">Aug 2025 &nbsp;·&nbsp; Unity · C# · HTML5</div>
+            <ul class="bullets">
+              <li>First jam entry (GMTK 2025 — one of the largest jams globally)</li>
+              <li>Player uses in-game 'cheat keys' to escape a repeating level loop — meta-narrative mechanic with C# state tracking and per-loop level variation</li>
+              <li>Applied player feedback on jump feel to next project (coyote time) — structured learning between shipped titles</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAINING & CERTIFICATIONS -->
+    <div class="section">
+      <div class="section-heading">Training &amp; Certifications</div>
+      <div class="two-col">
+        <div>
+          <div class="entry">
+            <div class="entry-header">
+              <span class="entry-company">Unity Learn — Junior Programmer Pathway</span>
+            </div>
+            <div class="entry-meta">2024–2025 &nbsp;·&nbsp; Official Certification Track · 12 weeks · +3000 XP</div>
+            <ul class="bullets">
+              <li>OOP in C#: inheritance, polymorphism, abstraction, encapsulation, interfaces</li>
+              <li>Scene flow &amp; state management, data persistence, UI scripting</li>
+              <li>Debugging, performance profiling, and coding best practices</li>
+              <li>Version control (Git) and iterative user-testing methodology</li>
+              <li>Pathway designed to certify job-readiness for entry-level Unity roles</li>
+            </ul>
+          </div>
+          <div class="entry-divider"></div>
+          <div class="entry">
+            <div class="entry-header">
+              <span class="entry-company">Unity Learn — Unity Essentials Pathway</span>
+            </div>
+            <div class="entry-meta">2024 &nbsp;·&nbsp; Official Certification Track · Foundational · 2 weeks</div>
+            <ul class="bullets">
+              <li>Unity Editor: GameObjects, prefabs, physics, cameras, 3D/2D scene navigation</li>
+              <li>C# scripting fundamentals: logic structures, Unity API, audio, build pipeline</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="entry">
+            <div class="entry-header">
+              <span class="entry-company">Udemy — Complete C# Unity Game Developer 3D</span>
+            </div>
+            <div class="entry-meta">2023–2024 &nbsp;·&nbsp; GameDev.tv · Rick Davidson · Unity 6 · 2M+ students</div>
+            <ul class="bullets">
+              <li>Built 5 complete 3D games in C#, each targeting a distinct skill set:</li>
+              <li><strong>Obstacle Dodge</strong> — player input, collisions, variables</li>
+              <li><strong>Rocket Boost</strong> — physics forces, classes, namespaces</li>
+              <li><strong>Galaxy Strike</strong> — terrain, Timeline, arrays, coroutines</li>
+              <li><strong>Royal Run</strong> — procedural generation, object pooling, animations, post-processing</li>
+              <li><strong>Sharp Shooter</strong> — nav mesh AI, raycasting, weapon systems, FPS controls, ProBuilder</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFESSIONAL EXPERIENCE -->
+    <div class="section">
+      <div class="section-heading">Professional Experience</div>
+      <div class="section-note">Senior roles in specialty coffee — included for transferable skills directly relevant to a games studio: cross-functional collaboration, ownership of complex systems, and iterative quality improvement under pressure.</div>
+      <div class="two-col">
+        <div>
+          <div class="entry">
+            <div class="entry-header">
+              <span class="entry-company">Alchemy Coffee Roasters</span>
+              <span class="entry-role">Head of Coffee</span>
+            </div>
+            <div class="entry-meta">Jun 2024 – Present &nbsp;·&nbsp; London</div>
+            <ul class="bullets">
+              <li>Quality and training standards across multiple sites — consistent delivery in distributed environments</li>
+              <li>Designs and iterates training curriculum; communication bridge between sites and production</li>
+            </ul>
+          </div>
+          <div class="entry-divider"></div>
+          <div class="entry">
+            <div class="entry-header">
+              <span class="entry-company">Alchemy Coffee Roasters</span>
+              <span class="entry-role">Head Barista &amp; Production Roaster</span>
+            </div>
+            <div class="entry-meta">Mar 2021 – May 2023 &nbsp;·&nbsp; London</div>
+            <ul class="bullets">
+              <li>Established quality control procedures; trained baristas to measurable, repeatable standards</li>
+              <li>Maintained and troubleshot complex production equipment under daily pressure</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="entry">
+            <div class="entry-header">
+              <span class="entry-company">Saint Coffee Roasters</span>
+              <span class="entry-role">Head Roaster &amp; Roastery Manager</span>
+            </div>
+            <div class="entry-meta">Oct 2023 – May 2024 &nbsp;·&nbsp; London</div>
+            <ul class="bullets">
+              <li>Managed stock, safety protocols, and wholesale accounts across the full roastery operation</li>
+              <li>Daily structured quality assessment — data-driven evaluation and iterative adjustment</li>
+            </ul>
+          </div>
+          <div class="entry-divider"></div>
+          <div class="entry">
+            <div class="entry-header">
+              <span class="entry-company">GRIND Coffee Roasters</span>
+              <span class="entry-role">Production Roaster</span>
+            </div>
+            <div class="entry-meta">May 2023 – Sep 2023 &nbsp;·&nbsp; London</div>
+            <ul class="bullets">
+              <li>High-output production requiring strict consistency, precise timing, and close attention to detail</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section">
+      <div class="section-heading">Skills</div>
+      <div class="skills-grid">
+        <div class="skills-col">
+          <h4>Technical</h4>
+          <ul class="bullets">
+            <li>C# — Unity scripting, OOP, state machines, data persistence</li>
+            <li>Unity 6 — gameplay, UI, physics, animations, post-processing</li>
+            <li>Procedural generation · Object pooling · Nav mesh AI</li>
+            <li>Raycasting · Player controllers (3D, FPS, platformer)</li>
+            <li>Git · HTML5 / WebGL builds · ProBuilder</li>
+          </ul>
+        </div>
+        <div class="skills-col">
+          <h4>Transferable</h4>
+          <ul class="bullets">
+            <li>Rapid prototyping and shipping under jam deadlines</li>
+            <li>Iterative, feedback-driven improvement across all projects</li>
+            <li>Cross-functional collaboration and clear documentation</li>
+            <li>Autonomous and proactive — strong self-directed learning record</li>
+            <li>English (fluent) · Polish (native)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section">
+      <div class="section-heading">Education</div>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-company">University of Roehampton</span>
+          <span class="entry-role">BSc Biomedical Science — 2:1 Honours</span>
+        </div>
+        <div class="entry-meta">2014 – 2017 &nbsp;·&nbsp; London</div>
+        <ul class="bullets">
+          <li>Analytical thinking, structured experimentation, evidence-based problem-solving</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- INTERESTS -->
+    <div class="section">
+      <div class="section-heading">Interests</div>
+      <p style="font-size:13px; color: var(--mid); line-height: 1.7;">
+        Avid gamer across mobile, PC and console — particular interest in Free to Play mobile design and meta-game systems. Also enjoys bouldering, cycling, and music.
+      </p>
+    </div>
+
+  </div><!-- /body -->
+
+  <div class="footer">Patryk Paszko &nbsp;·&nbsp; <a href="mailto:p.paszko93@gmail.com">p.paszko93@gmail.com</a> &nbsp;·&nbsp; <a href="https://fenantren.itch.io" target="_blank">fenantren.itch.io</a></div>
+
+</div><!-- /page -->
+
+</body>
+</html>
